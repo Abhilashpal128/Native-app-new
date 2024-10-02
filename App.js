@@ -5,8 +5,9 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -24,6 +25,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import AppNavigator from './Navigations/AppNavigator';
+import SplashScreen from 'react-native-splash-screen';
 
 // function Section({children, title}) {
 //   const isDarkMode = useColorScheme() === 'dark';
@@ -58,6 +60,14 @@ function App() {
     backgroundColor: '#fff',
     height: '100%',
   };
+
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      setTimeout(() => {
+        SplashScreen?.hide();
+      }, 5000); // Delay it by 500ms (you can adjust the delay)
+    }
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
